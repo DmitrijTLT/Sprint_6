@@ -1,13 +1,17 @@
 package ru.yandex.practicum;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class MainPage extends BasePage {
+    private WebDriverWait wait;
+
     //-----------------------------Вопросы и ответы------------------------------------
     //---------------------------------------------------------------------------------
     // Вопрос: "Сколько это стоит? И как оплатить?"
@@ -96,9 +100,7 @@ public class MainPage extends BasePage {
     @FindBy(id = "accordion__panel-7")
     private WebElement regionAccordionPanel7;
 
-
     //---------------------------------------------------------------------------------
-
 
     // Конструктор класса
     public MainPage(WebDriver driver) {
@@ -147,11 +149,13 @@ public class MainPage extends BasePage {
         buttonAccordionHeading7.click();
     }
 
+    public String getButtonAccordionHeading0() {
+        return buttonAccordionHeading0.getText();
+    }
 
     //-----------Методы возвращающие ответы на вопросы----------------------------------
     public String getRegionAccordionPanel0() {
         return regionAccordionPanel0.getText();
-        //return driver.findElement(regionAccordionPanel0).getText();
     }
 
 
@@ -187,6 +191,11 @@ public class MainPage extends BasePage {
 
     public String getRegionAccordionPanel7() {
         return regionAccordionPanel7.getText();
+    }
+
+    //-----------Метод возвращающий вопросы----------------------------------
+    public By getQuestion(String questionText) {
+        return  By.xpath("//div[@class='accordion__button' and contains(text(),'" + questionText + "')]");
     }
 }
 

@@ -1,10 +1,7 @@
 package ru.yandex.practicum;
 
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -28,7 +25,7 @@ public class OrderPage extends BasePage {
 
 
     //Кнопка "Заказать" на странице
-    @FindBy(xpath = "//button[contains(@class, 'Button_Button__ra12g') and text()='Заказать']")
+    @FindBy(xpath = "//button[contains(@class, 'Button_Button__ra12g Button_Middle__1CSJM') and text()='Заказать']")
     private WebElement buttonOrderOnPage;
 
 
@@ -152,6 +149,9 @@ public class OrderPage extends BasePage {
 
     //Метод имитирующий клик по кнопке "Заказать" на странице
     public void clickButtonOrderOnPage() {
+        // Скроллим к кнопке "Заказать" на странице
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView();", buttonOrderOnPage);
         buttonOrderOnPage.click();
     }
 
